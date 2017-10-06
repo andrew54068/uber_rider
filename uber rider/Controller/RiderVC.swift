@@ -17,7 +17,7 @@ class RiderVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, U
     
     private var locationManager = CLLocationManager()
     private var userLocation: CLLocationCoordinate2D?
-    private var riderLocation: CLLocationCoordinate2D?
+    private var driverLocation: CLLocationCoordinate2D?
     
     private var canCallUber = true
     private var riderCanceledRequest = false
@@ -47,6 +47,14 @@ class RiderVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, U
             myMap.setRegion(region, animated: true)
             
             myMap.removeAnnotations(myMap.annotations)
+            if driverLocation != nil{
+                if !canCallUber{
+                    let driverAnnotation = MKPointAnnotation()
+                    driverAnnotation.title = "Drivers Location"
+                    driverAnnotation.coordinate = driverLocation!
+                    myMap.addAnnotation(driverAnnotation)
+                }
+            }
             
             let annotation = MKPointAnnotation()
             annotation.coordinate = userLocation!
@@ -118,8 +126,9 @@ class RiderVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, U
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
-    
-    
+    func updateDriverLocation(lat: Double, long: Double) {
+        driverLocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
+    }
 
 
 
