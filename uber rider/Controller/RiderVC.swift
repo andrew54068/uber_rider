@@ -84,7 +84,8 @@ class RiderVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, U
             }else{
 //                UberHandler.Instance.cancelUber()
                 self.alerTheUser(title: "Uber Canceled", message: "\(driverName) Canceled Uber Request")
-             
+                self.driverLocation = nil
+//                self.canCallUber = true
             }
         }
         riderCanceledRequest = false
@@ -103,7 +104,7 @@ class RiderVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, U
                 //already called
                 riderCanceledRequest = true
                 UberHandler.Instance.cancelUber()
-                
+                self.driverLocation = nil
             }
         }
     }

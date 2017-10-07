@@ -56,6 +56,11 @@ class UberHandler{
                         self.driver = name
                         self.delegate?.driverAcceptedRequest(requestAccepted: true, driverName: self.driver)
                     }
+                    if let lat = data[Constants.LATITUDE] as? Double{
+                        if let long = data[Constants.LONGTITUDE] as? Double{
+                            self.delegate?.updateDriverLocation(lat: lat, long: long)
+                        }
+                    }
                 }
             }
         }

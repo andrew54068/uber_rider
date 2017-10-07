@@ -15,8 +15,18 @@ class SignInVC: UIViewController {
     
     @IBOutlet var passwordTextField: UITextField!
     
+    @IBAction func EmailTouched(_ sender: Any) {
+        self.emailTextField.text! = ""
+    }
+    
+    @IBAction func PasswordTouched(_ sender: Any) {
+        self.passwordTextField.text! = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.emailTextField.text! = "rider@mail.com"
+        self.passwordTextField.text! = "123456"
         // Do any additional setup after loading the view, typically from a nib.
     }
 
