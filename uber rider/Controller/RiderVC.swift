@@ -125,7 +125,15 @@ class RiderVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, U
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
+        if self.presentedViewController == nil{
+            present(alert, animated: true, completion: nil)
+        }else{
+            dismiss(animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
+//            if let alert = self.presentedViewController as? UIAlertController{
+//                alert.present(alert, animated: true, completion: nil)
+//            }
+        }
     }
     func updateDriverLocation(lat: Double, long: Double) {
         driverLocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
